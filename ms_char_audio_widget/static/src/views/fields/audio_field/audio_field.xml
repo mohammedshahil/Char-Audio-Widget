@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ms_char_audio_widget.AudioRecorderField" owl="1">
+        <div class="o_field_char d-flex align-items-center">
+            <t t-if="props.readonly">
+                <span t-esc="state.inputValue" />
+            </t>
+            <t t-else="">
+                <input type="text"
+                    class="o_input"
+                    t-att-value="state.inputValue"
+                    t-on-input="(ev) => this.onInputChange(ev)"/>
+                <div class="ms-2 d-flex align-items-center">
+                    <button t-if="!state.isRecording"
+                        class="btn btn-link btn-sm p-0 text-primary"
+                        title="Record Audio"
+                        t-on-click="() => this.startRecording()"
+                        t-att-disabled="state.isProcessing">
+                        <i class="fa fa-microphone"/>
+                    </button>
+                    <button t-if="state.isRecording"
+                        class="btn btn-link btn-sm p-0 text-danger"
+                        title="Stop Recording"
+                        t-on-click="() => this.stopRecording()">
+                        <i class="fa fa-stop"/> <small>(<t t-esc="formatDuration(state.duration)"/>)</small>
+                    </button>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
